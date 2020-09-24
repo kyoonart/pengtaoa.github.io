@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://upain.icu">
-  <title>ncm  nvm安装的时候遇到的一些坑 | Escape</title>
+  <title>nvm安装的时候遇到的一些坑 | Escape</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="nvm安装的时候遇到的一些坑       1：nvm是切换node版本的一个工具 2：高版本的nvm切换的时候会丢失npm包这个需要自己去安装 一般安装的时候不会出现环境变量的问题 如果出现了那就有点倒霉了">
+  <meta name="description" content="nvm安装的时候遇到的一些坑1：nvm是切换node版本的一个工具 2：高版本的nvm切换的时候会丢失npm包这个需要自己去安装 一般安装的时候不会出现环境变量的问题 如果出现了那就有点倒霉了">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ncm  nvm安装的时候遇到的一些坑">
+<meta property="og:title" content="nvm安装的时候遇到的一些坑">
 <meta property="og:url" content="http://upain.icu/2020/06/01/ncm/index.html">
 <meta property="og:site_name" content="Escape">
-<meta property="og:description" content="nvm安装的时候遇到的一些坑       1：nvm是切换node版本的一个工具 2：高版本的nvm切换的时候会丢失npm包这个需要自己去安装 一般安装的时候不会出现环境变量的问题 如果出现了那就有点倒霉了">
+<meta property="og:description" content="nvm安装的时候遇到的一些坑1：nvm是切换node版本的一个工具 2：高版本的nvm切换的时候会丢失npm包这个需要自己去安装 一般安装的时候不会出现环境变量的问题 如果出现了那就有点倒霉了">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://s1.ax1x.com/2020/06/04/t0uBa4.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/06/04/t0uUMV.png">
 <meta property="article:published_time" content="2020-06-01T08:40:59.000Z">
-<meta property="article:modified_time" content="2020-09-23T08:41:51.967Z">
+<meta property="article:modified_time" content="2020-09-24T06:16:05.848Z">
 <meta property="article:author" content="Peng tao">
 <meta property="article:tag" content="其他">
 <meta name="twitter:card" content="summary">
@@ -89,8 +89,6 @@
 		        
 					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 		        
-					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
-		        
 					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
 		        
 			</div>
@@ -130,8 +128,6 @@
 			        
 						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 			        
-						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
-			        
 						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
 			        
 				</div>
@@ -165,7 +161,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      ncm  nvm安装的时候遇到的一些坑
+      nvm安装的时候遇到的一些坑
     </h1>
   
 
@@ -178,14 +174,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
-        <h3 id="nvm安装的时候遇到的一些坑"   >
-          <a href="#nvm安装的时候遇到的一些坑" class="heading-link"><i class="fas fa-link"></i></a>nvm安装的时候遇到的一些坑</h3>
-      <p>1：nvm是切换node版本的一个工具</p>
+        <h3 id="nvm安装的时候遇到的一些坑"><a href="#nvm安装的时候遇到的一些坑" class="headerlink" title="nvm安装的时候遇到的一些坑"></a>nvm安装的时候遇到的一些坑</h3><p>1：nvm是切换node版本的一个工具</p>
 <p>2：高版本的nvm切换的时候会丢失npm包这个需要自己去安装 一般安装的时候不会出现环境变量的问题 如果出现了那就有点倒霉了</p>
 <a id="more"></a>
 
-<p>需要自己下载node包<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://npm.taobao.org/mirrors/node?spm=a2c6h.14029880.0.0.3ba675d7vE7Dhj" >https://npm.taobao.org/mirrors/node?spm=a2c6h.14029880.0.0.3ba675d7vE7Dhj</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p>需要自己下载node包<a target="_blank" rel="noopener" href="https://npm.taobao.org/mirrors/node?spm=a2c6h.14029880.0.0.3ba675d7vE7Dhj">https://npm.taobao.org/mirrors/node?spm=a2c6h.14029880.0.0.3ba675d7vE7Dhj</a></p>
 <p>然后会发现新装的v-8xxxx版本里面的node_modules是空的这个时候就需要到刚刚下载的镜像里面把npm包拷贝过来然后就可以用npm了，否则无法使用</p>
 <p><img src="https://s1.ax1x.com/2020/06/04/t0uBa4.png"></p>
 <p><img src="https://s1.ax1x.com/2020/06/04/t0uUMV.png"></p>
