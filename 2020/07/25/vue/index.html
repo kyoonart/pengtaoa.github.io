@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="http://upain.icu">
   <title>vue内部运行机制 | Escape</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一张图了解全貌vue运行机制的全貌  在 new Vue() 之后。 Vue 会调用 _init 函数进行初始化，也就是这里的 init 过程，它会初始化生命周期、事件、 props、 methods、 data、 computed 与 watch 等。其中最重要的是通过 Object.defineProperty 设置 setter 与 getter 函数，用来实现「响应式」以及「依赖收集」 初">
+  <meta name="description" content="一张图了解全貌vue运行机制的全貌">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vue内部运行机制">
 <meta property="og:url" content="http://upain.icu/2020/07/25/vue/index.html">
 <meta property="og:site_name" content="Escape">
-<meta property="og:description" content="一张图了解全貌vue运行机制的全貌  在 new Vue() 之后。 Vue 会调用 _init 函数进行初始化，也就是这里的 init 过程，它会初始化生命周期、事件、 props、 methods、 data、 computed 与 watch 等。其中最重要的是通过 Object.defineProperty 设置 setter 与 getter 函数，用来实现「响应式」以及「依赖收集」 初">
+<meta property="og:description" content="一张图了解全貌vue运行机制的全貌">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/12/19/1606e7eaa2a664e8?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/12/19/1606ec3d306ab28f?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/12/21/160770b2a77e084e?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/12/21/1607715c316d4922?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
 <meta property="article:published_time" content="2020-07-25T04:26:18.000Z">
-<meta property="article:modified_time" content="2020-09-25T10:05:35.761Z">
+<meta property="article:modified_time" content="2020-09-25T10:10:33.709Z">
 <meta property="article:author" content="Peng tao">
 <meta property="article:tag" content="vue">
 <meta name="twitter:card" content="summary">
@@ -178,6 +178,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>一张图了解全貌vue运行机制的全貌</p>
+<a id="more"></a> 
+
 <p><img src="https://user-gold-cdn.xitu.io/2017/12/19/1606e7eaa2a664e8?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"></p>
 <p>在 <code>new Vue()</code> 之后。 Vue 会调用 <code>_init</code> 函数进行初始化，也就是这里的 <code>init</code> 过程，它会初始化生命周期、事件、 props、 methods、 data、 computed 与 watch 等。其中最重要的是通过 <code>Object.defineProperty</code> 设置 <code>setter</code> 与 <code>getter</code> 函数，用来实现「<strong>响应式</strong>」以及「<strong>依赖收集</strong>」</p>
 <p>初始化之后调用 <code>$mount</code> 会挂载组件，如果是运行时编译，即不存在 render function 但是存在 template 的情况，需要进行「<strong>编译</strong>」步骤。</p>
