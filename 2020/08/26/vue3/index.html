@@ -6,16 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://upain.icu">
-  <title>Archives | Escape</title>
+  <title>Vue3.0  Composition API | Escape</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Escape">
-<meta property="og:url" content="http://upain.icu/archives/page/2/index.html">
+  <meta name="description" content="在小米实习的时候使用到的技术栈、发现小米早在半年前就已经开始使用了、所以打算简单记录一下，不得不说小米前端所使用的的技术栈还是比较新的！ Vue3.0  Composition API   1234vue -Vvue add vue-next 升级vue版本npm package+ yarn add @vue&#x2F;composition-api   Composition API  什么是 Compo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue3.0  Composition API">
+<meta property="og:url" content="http://upain.icu/2020/08/26/vue3/index.html">
 <meta property="og:site_name" content="Escape">
+<meta property="og:description" content="在小米实习的时候使用到的技术栈、发现小米早在半年前就已经开始使用了、所以打算简单记录一下，不得不说小米前端所使用的的技术栈还是比较新的！ Vue3.0  Composition API   1234vue -Vvue add vue-next 升级vue版本npm package+ yarn add @vue&#x2F;composition-api   Composition API  什么是 Compo">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-78a86c157451237f32878072b41c7907_720w.jpg">
+<meta property="article:published_time" content="2020-08-26T05:17:13.000Z">
+<meta property="article:modified_time" content="2020-09-26T05:23:22.401Z">
 <meta property="article:author" content="Peng tao">
-<meta property="article:tag" content="pengtaoa">
+<meta property="article:tag" content="vue">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.zhimg.com/80/v2-78a86c157451237f32878072b41c7907_720w.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Escape" type="application/atom+xml">
   
@@ -147,177 +153,207 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-vue3" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Vue3.0  Composition API
+    </h1>
+  
+
+        
+        <a href="/2020/08/26/vue3/" class="archive-article-date">
+  	<time datetime="2020-08-26T05:17:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-26</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在小米实习的时候使用到的技术栈、发现小米早在半年前就已经开始使用了、所以打算简单记录一下，不得不说小米前端所使用的的技术栈还是比较新的！</p>
+<p>Vue3.0  Composition API  </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vue -V</span><br><span class="line">vue add vue-next 升级vue版本</span><br><span class="line">npm package</span><br><span class="line">+ yarn add @vue/composition-api</span><br></pre></td></tr></table></figure>
+
+<p> Composition API</p>
+<ul>
+<li>什么是 Componsition API</li>
+<li>为什么要使用  Componsition API</li>
+<li>如何使用  Componsition API</li>
+</ul>
+<p>1、什么是 Componsition API</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">options api</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      key: value,</span><br><span class="line">        功能A</span><br><span class="line">        功能B</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    name() &#123;</span><br><span class="line">          功能A</span><br><span class="line">          功能B</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    name() &#123;</span><br><span class="line">          功能A</span><br><span class="line">          功能B</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  watch: &#123;</span><br><span class="line">    data(newValue, oldValue) &#123;&#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>1、Componsiton Api  是根据逻辑相关性组织代码的，提高可读性和维护性</p>
+<p>2、 更好地重用逻辑代码</p>
+<p>vue2.0 是通过 Mixins 注入的形式来完成的=&gt;容易发生命名冲突 且关系不清楚</p>
+<ul>
+<li>在vue3.0中 composition api是可选的</li>
+</ul>
+<p>实践</p>
+<p>逻辑复用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// option-base</span></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;dialog0 :visible=<span class="string">&quot;showDialog0&quot;</span> @close=<span class="string">&quot;toggleDialog0&quot;</span>&gt;&lt;/dialog0&gt;</span><br><span class="line">  &lt;dialog1 :visible=<span class="string">&quot;showDialog1&quot;</span> @close=<span class="string">&quot;toggleDialog1&quot;</span>&gt;&lt;/dialog1&gt;</span><br><span class="line">  &lt;dialog2 :visible=<span class="string">&quot;showDialog2&quot;</span> @close=<span class="string">&quot;toggleDialog2&quot;</span>&gt;&lt;/dialog2&gt;</span><br><span class="line">  ...</span><br><span class="line">  &lt;dialog9 :visible=<span class="string">&quot;showDialog9&quot;</span> @close=<span class="string">&quot;toggleDialog9&quot;</span>&gt;&lt;/dialog9&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      showDialog0: <span class="literal">false</span>,</span><br><span class="line">      showDialog1: <span class="literal">false</span>,</span><br><span class="line">      showDialog2: <span class="literal">false</span>,</span><br><span class="line">      <span class="comment">// ...</span></span><br><span class="line">      showDialog9: <span class="literal">false</span>,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  </span><br><span class="line">  methods: &#123;</span><br><span class="line">    toggleDialog0() &#123;</span><br><span class="line">      <span class="built_in">this</span>.showDialog0 = !<span class="built_in">this</span>.showDialog0</span><br><span class="line">    &#125;,</span><br><span class="line">    toggleDialog1() &#123;</span><br><span class="line">      <span class="built_in">this</span>.showDialog1 = !<span class="built_in">this</span>.showDialog1</span><br><span class="line">    &#125;,</span><br><span class="line">    toggleDialog0() &#123;</span><br><span class="line">      <span class="built_in">this</span>.showDialog2 = !<span class="built_in">this</span>.showDialog2</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    toggleDialog0() &#123;</span><br><span class="line">      <span class="built_in">this</span>.showDialog9 = !<span class="built_in">this</span>.showDialog9</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//这样，就能在一个页面上控制 10 这个类 dialog 的交互了。逻辑过于简单而忍不住 copy</span></span><br><span class="line"><span class="comment">//由于利用了 data 的响应式，我不能在外部抽象一个逻辑，去声明 show 个状态和返回一个改变状态的方法，这些逻辑算是在 option-base 的思维下最精简的代码了。</span></span><br><span class="line"><span class="comment">//当然对于这一系列状态可以用数组去优化，但是这些方法对于 composition-api 同样适用，所以不纳入比较范围，演示一下 composition-api 怎么复用这个响应式的状态</span></span><br><span class="line"></span><br><span class="line">compostion api是如何做的</span><br><span class="line"><span class="comment">//useToggle.js</span></span><br><span class="line"><span class="comment">// reuse logic</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">useToggle</span>(<span class="params">initState = false</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> state = ref(initState)</span><br><span class="line">  <span class="keyword">const</span> toggle = <span class="function"><span class="keyword">function</span>(<span class="params">outerState</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> outerState === <span class="string">&#x27;boolean&#x27;</span>) &#123;</span><br><span class="line">      state.value = outState</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      state.value = !state.value</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    state,</span><br><span class="line">    toggle</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//业务使用</span></span><br><span class="line"><span class="comment">// compostion-api</span></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;dialog0 :visible=<span class="string">&quot;showDialog0&quot;</span> @close=<span class="string">&quot;toggleDialog0&quot;</span>&gt;&lt;/dialog0&gt;</span><br><span class="line">  &lt;dialog1 :visible=<span class="string">&quot;showDialog1&quot;</span> @close=<span class="string">&quot;toggleDialog1&quot;</span>&gt;&lt;/dialog1&gt;</span><br><span class="line">  &lt;dialog2 :visible=<span class="string">&quot;showDialog2&quot;</span> @close=<span class="string">&quot;toggleDialog2&quot;</span>&gt;&lt;/dialog2&gt;</span><br><span class="line">  ...</span><br><span class="line">  &lt;dialog9 :visible=<span class="string">&quot;showDialog9&quot;</span> @close=<span class="string">&quot;toggleDialog9&quot;</span>&gt;&lt;/dialog9&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  setup() &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; <span class="attr">state</span>: showDialog0, <span class="attr">toggle</span>: toggleDialog0 &#125; = useToggle()</span><br><span class="line">    <span class="keyword">const</span> &#123; <span class="attr">state</span>: showDialog1, <span class="attr">toggle</span>: toggleDialog1 &#125; = useToggle()</span><br><span class="line">    <span class="keyword">const</span> &#123; <span class="attr">state</span>: showDialog2, <span class="attr">toggle</span>: toggleDialog2 &#125; = useToggle()</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">const</span> &#123; <span class="attr">state</span>: showDialog9, <span class="attr">toggle</span>: toggleDialog9 &#125; = useToggle()</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      showDialog0,</span><br><span class="line">      showDialog1,</span><br><span class="line">      showDialog2,</span><br><span class="line">      <span class="comment">// ...</span></span><br><span class="line">      showDialog9,</span><br><span class="line">      toggleDialog0,</span><br><span class="line">      toggleDialog1,</span><br><span class="line">      toggleDialog2,</span><br><span class="line">      <span class="comment">// ...</span></span><br><span class="line">      toggleDialog9,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"><span class="comment">//可以看到 composition-api 可以优雅的复用这些简单的逻辑，但是对于 vue-template 来说是没什么改变的。所以我更愿意把 composition-api 看作更加灵活利用 Vue 的方案，而不是 Vue 3.0 代码的语法变革。只不过刚好它随着 Vue 3.0 的实现而出现在大家眼前。</span></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; ref, onMounted, onUnmounted &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">useMousePosition</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> x = ref(<span class="number">0</span>)</span><br><span class="line">  <span class="keyword">const</span> y = ref(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">update</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    x.value = e.pageX</span><br><span class="line">    y.value = e.pageY</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  onMounted(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">window</span>.addEventListener(<span class="string">&#x27;mousemove&#x27;</span>, update)</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  onUnmounted(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">window</span>.removeEventListener(<span class="string">&#x27;mousemove&#x27;</span>, update)</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123; x, y &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 导入文件中</span></span><br><span class="line"><span class="keyword">import</span> &#123; useMousePosition &#125; <span class="keyword">from</span> <span class="string">&#x27;./mouse&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  setup() &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; x, y &#125; = useMousePosition()</span><br><span class="line">    <span class="comment">// other logic...</span></span><br><span class="line">    <span class="keyword">return</span> &#123; x, y &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>初始化时机</p>
+<p><img src="https://pic1.zhimg.com/80/v2-78a86c157451237f32878072b41c7907_720w.jpg"></p>
+<p>生命周期的变化</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">被替换</span><br><span class="line"></span><br><span class="line">beforeCreate -&gt; setup()</span><br><span class="line">created -&gt; setup()</span><br><span class="line"></span><br><span class="line">重命名</span><br><span class="line"></span><br><span class="line">beforeMount -&gt; onBeforeMount</span><br><span class="line">mounted -&gt; onMounted</span><br><span class="line">beforeUpdate -&gt; onBeforeUpdate</span><br><span class="line">updated -&gt; onUpdated</span><br><span class="line">beforeDestroy -&gt; onBeforeUnmount</span><br><span class="line">destroyed -&gt; onUnmounted</span><br><span class="line">errorCaptured -&gt; onErrorCaptured</span><br><span class="line"></span><br><span class="line">新增的</span><br><span class="line">新增的以下<span class="number">2</span>个方便调试 debug 的回调钩子：</span><br><span class="line"></span><br><span class="line">onRenderTracked</span><br><span class="line">onRenderTriggered</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>通信 vuex</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">注入 </span><br><span class="line">provide(TopGameDataSymbol, topGames);</span><br><span class="line">provide(RecommendGameDataSymbol, recommendGames);</span><br><span class="line">使用</span><br><span class="line"><span class="keyword">const</span> topGames = inject(TopGameDataSymbol);</span><br><span class="line"><span class="keyword">const</span> recommendGames = inject(RecommendGameDataSymbol);</span><br></pre></td></tr></table></figure>
+
+<p>与 React Hooks的对比</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">基于函数的组合式 API 提供了与 React Hooks 同等级别的逻辑组合能力，但是与它还是有很大不同：组合式 API 的 setup() 函数只会被调用一次，这意味着使用 Vue 组合式 API 的代码会是：</span><br><span class="line">一般来说更符合惯用的 JavaScript 代码的直觉；</span><br><span class="line">不需要顾虑调用顺序，也可以用在条件语句中；</span><br><span class="line">不会在每次渲染时重复执行，以降低垃圾回收的压力；</span><br><span class="line">不存在内联处理函数导致子组件永远更新的问题，也不需要 useCallback；</span><br><span class="line">不存在忘记记录依赖的问题，也不需要“useEffect”和“useMemo”并传入依赖数组以捕获过时的变量。Vue 的自动依赖跟踪可以确保侦听器和计算值总是准确无误。</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/23/this/" class="archive-article-date">
-  	<time datetime="2020-03-23T07:42:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/23/this/">关于this</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">this</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://upain.icu/2020/08/26/vue3/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/22/class/" class="archive-article-date">
-  	<time datetime="2020-03-22T13:54:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-22</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/07/25/vue/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">vue内部运行机制</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/22/class/">class</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Es6</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/20/xingneng/" class="archive-article-date">
-  	<time datetime="2020-03-20T08:38:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/20/xingneng/">性能优化的一个小case</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">性能优化</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/02/23/shangxaiwen/" class="archive-article-date">
-  	<time datetime="2020-02-23T08:39:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/23/shangxaiwen/">执行上下文</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">&amp;laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
-    </nav>
   
 
 
@@ -341,8 +377,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
