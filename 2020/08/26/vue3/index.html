@@ -8,16 +8,16 @@
   <link rel="dns-prefetch" href="http://upain.icu">
   <title>Vue3.0  Composition API | Escape</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在小米实习的时候使用到的技术栈、发现小米早在半年前就已经开始使用了、所以打算简单记录一下，不得不说小米前端所使用的的技术栈还是比较新的！ Vue3.0  Composition API   12345vue -Vvue add vue-next 升级vue版本npm package或者暂时不想升级技术栈 引用这个npm包也可以+ yarn add @vue&#x2F;composition-api   Co">
+  <meta name="description" content="在小米实习的时候使用到的技术栈、发现小米早在半年前就已经开始使用了、所以打算简单记录一下，不得不说小米前端所使用的的技术栈还是比较新的！ Vue3.0  Composition API">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vue3.0  Composition API">
 <meta property="og:url" content="http://upain.icu/2020/08/26/vue3/index.html">
 <meta property="og:site_name" content="Escape">
-<meta property="og:description" content="在小米实习的时候使用到的技术栈、发现小米早在半年前就已经开始使用了、所以打算简单记录一下，不得不说小米前端所使用的的技术栈还是比较新的！ Vue3.0  Composition API   12345vue -Vvue add vue-next 升级vue版本npm package或者暂时不想升级技术栈 引用这个npm包也可以+ yarn add @vue&#x2F;composition-api   Co">
+<meta property="og:description" content="在小米实习的时候使用到的技术栈、发现小米早在半年前就已经开始使用了、所以打算简单记录一下，不得不说小米前端所使用的的技术栈还是比较新的！ Vue3.0  Composition API">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://pic1.zhimg.com/80/v2-78a86c157451237f32878072b41c7907_720w.jpg">
 <meta property="article:published_time" content="2020-08-26T05:17:13.000Z">
-<meta property="article:modified_time" content="2020-09-26T05:26:42.949Z">
+<meta property="article:modified_time" content="2020-09-26T05:27:45.236Z">
 <meta property="article:author" content="Peng tao">
 <meta property="article:tag" content="vue">
 <meta name="twitter:card" content="summary">
@@ -175,6 +175,8 @@
       
         <p>在小米实习的时候使用到的技术栈、发现小米早在半年前就已经开始使用了、所以打算简单记录一下，不得不说小米前端所使用的的技术栈还是比较新的！</p>
 <p>Vue3.0  Composition API  </p>
+<a id="more"></a>
+
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vue -V</span><br><span class="line">vue add vue-next 升级vue版本</span><br><span class="line">npm <span class="keyword">package</span></span><br><span class="line">或者暂时不想升级技术栈 引用这个npm包也可以</span><br><span class="line">+ yarn add <span class="meta">@vue</span>/composition-api</span><br></pre></td></tr></table></figure>
 
 <p> Composition API</p>
@@ -183,8 +185,6 @@
 <li>为什么要使用  Componsition API</li>
 <li>如何使用  Componsition API</li>
 </ul>
-<a id="more"></a>
-
 <p>1、什么是 Componsition API</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">options api</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      key: value,</span><br><span class="line">        功能A</span><br><span class="line">        功能B</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    name() &#123;</span><br><span class="line">          功能A</span><br><span class="line">          功能B</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    name() &#123;</span><br><span class="line">          功能A</span><br><span class="line">          功能B</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  watch: &#123;</span><br><span class="line">    data(newValue, oldValue) &#123;&#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
