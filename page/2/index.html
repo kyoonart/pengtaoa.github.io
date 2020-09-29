@@ -316,7 +316,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/22/class/">class</a>
+      <a class="article-title" href="/2020/03/22/class/">Es6中的class中super问题</a>
     </h1>
   
 
@@ -329,7 +329,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>  <code>super</code>这个关键字，既可以当作函数使用，也可以当作对象使用。在这两种情况下，它的用法完全不同。</p>
+        <p>ES6中super指向的问题。super.function、super.attribute和super()分别指向什么，傻傻分不清楚  </p>
+<p><code>super</code>这个关键字，既可以当作函数使用，也可以当作对象使用。在这两种情况下，它的用法完全不同。</p>
 <p>1:第一种情况：super<code>作为函数调用时，代表父类的构造函数。ES6 要求，子类的构造函数必须执行一次</code>super`函数。注意,作为函数时，super() 只能用在子类的构造函数之中，用在其他地方就会报错。</p>
         
           <a class="article-more-a" href="/2020/03/22/class/#more">more >></a>
