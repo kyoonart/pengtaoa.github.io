@@ -6,23 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://upain.icu">
-  <title>三次握手连接四次握手断开 | Escape</title>
+  <title>理解MVVM模型 | Escape</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="网络TCP建立连接为什么需要三次握手而结束要四次       TCP的三次握手和四次断开TCP是一个面向连接的服务,面向连接的服务是电话系统服务模式的抽象,每一次完整的数据传输都必须经过建立连接,数据传输和终止连接3个过程,TCP建立连接的过程称为三次握手,下面看一下三次握手的具本过程">
+  <meta name="description" content="什么是MVVMMVVM(Model-View-ViewModel)是一种软件架构设计模式，由微软的架构师最早提出。是一种简化用户界面的事件驱动编程方式。 MVVM源于经典的MVC模式，期间还经过MVP模式。MVVM的核心是ViewModel层，负责转换Model中的数据对象来让数据变得更容易管理和使用，其作用如下：  向上，该层与View层进行双向数据绑定 向下，该层与Model层通过接口请求进行">
 <meta property="og:type" content="article">
-<meta property="og:title" content="三次握手连接四次握手断开">
-<meta property="og:url" content="http://upain.icu/2020/05/01/tcp/index.html">
+<meta property="og:title" content="理解MVVM模型">
+<meta property="og:url" content="http://upain.icu/2020/05/29/mvvm/index.html">
 <meta property="og:site_name" content="Escape">
-<meta property="og:description" content="网络TCP建立连接为什么需要三次握手而结束要四次       TCP的三次握手和四次断开TCP是一个面向连接的服务,面向连接的服务是电话系统服务模式的抽象,每一次完整的数据传输都必须经过建立连接,数据传输和终止连接3个过程,TCP建立连接的过程称为三次握手,下面看一下三次握手的具本过程">
+<meta property="og:description" content="什么是MVVMMVVM(Model-View-ViewModel)是一种软件架构设计模式，由微软的架构师最早提出。是一种简化用户界面的事件驱动编程方式。 MVVM源于经典的MVC模式，期间还经过MVP模式。MVVM的核心是ViewModel层，负责转换Model中的数据对象来让数据变得更容易管理和使用，其作用如下：  向上，该层与View层进行双向数据绑定 向下，该层与Model层通过接口请求进行">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://images0.cnblogs.com/i/273314/201402/272215113518001.png">
-<meta property="og:image" content="https://images0.cnblogs.com/i/273314/201403/092149483783253.png">
-<meta property="article:published_time" content="2020-05-01T08:36:17.000Z">
-<meta property="article:modified_time" content="2020-09-23T08:42:09.929Z">
+<meta property="og:image" content="https://doubler.cn/2020/02/09/%E7%A7%8B%E6%8B%9B%E5%A4%8D%E4%B9%A0%E8%AE%A1%E5%88%92-Vue%E7%9F%A5%E8%AF%86%E7%82%B93/MVVM%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="https://doubler.cn/2020/02/09/%E7%A7%8B%E6%8B%9B%E5%A4%8D%E4%B9%A0%E8%AE%A1%E5%88%92-Vue%E7%9F%A5%E8%AF%86%E7%82%B93/%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="https://doubler.cn/2020/02/09/%E7%A7%8B%E6%8B%9B%E5%A4%8D%E4%B9%A0%E8%AE%A1%E5%88%92-Vue%E7%9F%A5%E8%AF%86%E7%82%B93/MVC%E6%A8%A1%E5%BC%8F.png">
+<meta property="article:published_time" content="2020-05-29T12:31:58.000Z">
+<meta property="article:modified_time" content="2020-09-29T12:37:29.922Z">
 <meta property="article:author" content="Peng tao">
-<meta property="article:tag" content="网络协议">
+<meta property="article:tag" content="vue">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://images0.cnblogs.com/i/273314/201402/272215113518001.png">
+<meta name="twitter:image" content="https://doubler.cn/2020/02/09/%E7%A7%8B%E6%8B%9B%E5%A4%8D%E4%B9%A0%E8%AE%A1%E5%88%92-Vue%E7%9F%A5%E8%AF%86%E7%82%B93/MVVM%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84.png">
   
     <link rel="alternative" href="/atom.xml" title="Escape" type="application/atom+xml">
   
@@ -154,69 +155,78 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-tcp" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-mvvm" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      三次握手连接四次握手断开
+      理解MVVM模型
     </h1>
   
 
         
-        <a href="/2020/05/01/tcp/" class="archive-article-date">
-  	<time datetime="2020-05-01T08:36:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-01</time>
+        <a href="/2020/05/29/mvvm/" class="archive-article-date">
+  	<time datetime="2020-05-29T12:31:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
-        <h3 id="网络TCP建立连接为什么需要三次握手而结束要四次"   >
-          <a href="#网络TCP建立连接为什么需要三次握手而结束要四次" class="heading-link"><i class="fas fa-link"></i></a>网络TCP建立连接为什么需要三次握手而结束要四次</h3>
-      <p>TCP的三次握手和四次断开<br>TCP是一个面向连接的服务,面向连接的服务是电话系统服务模式的抽象,每一次完整的数据传输都必须经过建<br>立连接,数据传输和终止连接3个过程,TCP建立连接的过程称为三次握手,下面看一下三次握手的具本过程</p>
-<a id="more"></a>
+        <h3 id="什么是MVVM"><a href="#什么是MVVM" class="headerlink" title="什么是MVVM"></a>什么是MVVM</h3><p>MVVM(Model-View-ViewModel)是一种软件架构设计模式，由微软的架构师最早提出。是一种简化用户界面的事件驱动编程方式。</p>
+<p>MVVM源于经典的MVC模式，期间还经过MVP模式。MVVM的核心是ViewModel层，负责转换Model中的数据对象来让数据变得更容易管理和使用，其作用如下：</p>
+<ul>
+<li>向上，该层与View层进行双向数据绑定</li>
+<li>向下，该层与Model层通过接口请求进行数据交互</li>
+</ul>
+<p><img src="https://doubler.cn/2020/02/09/%E7%A7%8B%E6%8B%9B%E5%A4%8D%E4%B9%A0%E8%AE%A1%E5%88%92-Vue%E7%9F%A5%E8%AF%86%E7%82%B93/MVVM%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84.png"></p>
+<p>而Vue就是一种基于MVVM结构的框架</p>
+<h4 id="mvvm组成部分"><a href="#mvvm组成部分" class="headerlink" title="mvvm组成部分"></a>mvvm组成部分</h4><p><img src="https://doubler.cn/2020/02/09/%E7%A7%8B%E6%8B%9B%E5%A4%8D%E4%B9%A0%E8%AE%A1%E5%88%92-Vue%E7%9F%A5%E8%AF%86%E7%82%B93/%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84.png"></p>
+<h4 id="view"><a href="#view" class="headerlink" title="view"></a>view</h4><p>View是视图层，也就是通常所说的用户界面。前端主要由HTML和CSS构成，为了更方便的展示ViewModel或Model层的数据，已经产生了各种各样的前后端模板语言。各大MVVM框架，如Vue.js、AngularJS、EJS等也都有自己用来构建用户界面的内置模板语言。</p>
+<h4 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h4><p>Model指数据模型，泛指后端进行的各种业务逻辑处理和数据操控，主要围绕数据库系统展开。这里的难点主要在于需要和前端约定统一的接口规则。</p>
+<h4 id="ViewModel"><a href="#ViewModel" class="headerlink" title="ViewModel"></a>ViewModel</h4><p>ViewModel是由前端开发人员组织生成和维护的视图数据层。在这一层中，前端开发人员对从后端获取的Model数据进行转换，做二次封装，以生成符合View层使用预期的视图数据模型</p>
+<p><strong>注意：</strong>ViewModel所封装出来的数据模型包括视图的状态和行为两部分，而Model层的数据模型只包含状态</p>
+<ul>
+<li>视图状态：页面这一块展示什么，在那一块展示什么</li>
+<li>视图行为：页面加载完成时发生什么，点击某一块发生什么，也就是交互</li>
+</ul>
+<p>视图状态和行为都封装在了ViewModel里，这样的封装使得ViewModel可以完整地去描述View层。由于实现了双向绑定，ViewModel的内容会实时展现在View层，因此开发者不必在低效而又麻烦得通过去操作DOM来更新视图了。</p>
+<p>MVVM 框架已经把最脏最累的一块做好了，我们开发者只需要处理和维护 ViewModel，更新数据视图就会自动得到相应更新，真正实现 <code>事件驱动编程</code>。</p>
+<p>View 层展现的不是 <code>Model</code> 层的数据，而是 <code>ViewModel</code> 的数据，由 <code>ViewModel</code> 负责与 <code>Model</code> 层交互，<code>这就完全解耦了 View 层和 Model 层，这个解耦是至关重要的，它是前后端分离方案实施的重要一环</code>。</p>
+<h2 id="MVVM模式的优点"><a href="#MVVM模式的优点" class="headerlink" title="MVVM模式的优点"></a>MVVM模式的优点</h2><p>MVVM引入了ViewModel的几大好处有：</p>
+<ul>
+<li>低耦合：视图可以独立于Model的变化和修改，当View变化的时候Model可以不变，同理Model变化的时候View也可不变。</li>
+<li>可复用：可以把一些视图逻辑放在一个ViewModel里面，让很多View重用这段视图逻辑，这也就是我们常说的组件封装与使用。</li>
+<li>独立开发：开发人员可以专注于业务逻辑和数据的开发（及专注于ViewModel层），设计人员可以专注于页面设计</li>
+<li>可测试：页面通常难以测试，但是现在我们可以通过针对ViewModel来进行测试</li>
+</ul>
+<h2 id="MVVM与MVC的区别"><a href="#MVVM与MVC的区别" class="headerlink" title="MVVM与MVC的区别"></a>MVVM与MVC的区别</h2><p>MVC模式由三部分组成：</p>
+<ul>
+<li>Model：管理数据</li>
+<li>View：UI布局，展示数据</li>
+<li>Controller：响应用户操作，并将View的变化更新到Model上</li>
+</ul>
+<p>那么整个流程是这样的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">用户操作 -&gt; View接收到用户的输入点击等操作 </span><br><span class="line">-&gt; Controller进行业务逻辑处理，通过直接调用模型提供的方法来操作模型</span><br><span class="line">-&gt; Model数据持久化 -&gt; 将结果返回到View上</span><br></pre></td></tr></table></figure>
 
-<p>举个打电话的例子：</p>
-<p> A : 你好我是A，你听得到我在说话吗</p>
-<p>　　B : 听到了，我是B，你听到我在说话吗</p>
-<p>　　A : 嗯，听到了</p>
-<p>　　建立连接，开始聊天！</p>
-<p><img src="https://images0.cnblogs.com/i/273314/201402/272215113518001.png"></p>
-
-        <h4 id="TCP三次握手过程"   >
-          <a href="#TCP三次握手过程" class="heading-link"><i class="fas fa-link"></i></a>TCP三次握手过程</h4>
-      <p>1 主机A通过向主机B 发送一个含有同步序列号的标志位的数据段给主机B ,向主机B 请求建立连接,通过这个数据段,<br>主机A告诉主机B 两件事:我想要和你通信;你可以用哪个序列号作为起始数据段来回应我.<br>2 主机B 收到主机A的请求后,用一个带有确认应答(ACK)和同步序列号(SYN)标志位的数据段响应主机A,也告诉主机A两件事:<br>我已经收到你的请求了,你可以传输数据了;你要用哪个序列号作为起始数据段来回应我<br>3 主机A收到这个数据段后,再发送一个确认应答,确认已收到主机B 的数据段:”我已收到回复,我现在要开始传输实际数据</p>
-<p>这样3次握手就完成了,主机A和主机B 就可以传输数据了.<br>3次握手的特点<br>没有应用层的数据<br>SYN这个标志位只有在TCP建产连接时才会被置1<br>握手完成后SYN标志位被置0</p>
-
-        <h4 id="TCP-的三次握手过程？为什么会采用三次握手，若采用二次握手可以吗？"   >
-          <a href="#TCP-的三次握手过程？为什么会采用三次握手，若采用二次握手可以吗？" class="heading-link"><i class="fas fa-link"></i></a>TCP 的三次握手过程？为什么会采用三次握手，若采用二次握手可以吗？</h4>
-      <p> 建立连接的过程是利用客户服务器模式，假设主机 A 为客户端，主机 B 为服务器端。</p>
-<p> 1 ） TCP 的三次握手过程：主机 A 向 B 发送连接请求；主机 B 对收到的主机 A 的报文段进行确认；主机 A 再次对主机 B 的确认进行确认。</p>
-<p> 2 ）采用三次握手是：为了<strong>防止失效的连接请求报文段突然又传送到主机 B</strong> ，因而产生错误。</p>
-<p> 失效的连接请求报文段是指：主机 A 发出的连接请求没有收到主机 B 的确认，于是经过一段时间后，主机 A 又重新向主机 B 发送连接请求，且建立成功，顺序完成数据传输。考虑这样一种特殊情况，主机 A 第一次发送的连接请求并没有丢失，而是因为网络节点导致延迟达到主机 B ，主机 B 以为是主机 A 又发起的新连接，于是主机 B 同意连接，并向主机 A 发回确认，但是此时主机 A 根本不会理会，主机 B 就一直在等待主机 A 发送数据，导致主机 B 的资源浪费</p>
-<p><img src="https://images0.cnblogs.com/i/273314/201403/092149483783253.png"></p>
-
-        <h4 id="4次断开过程"   >
-          <a href="#4次断开过程" class="heading-link"><i class="fas fa-link"></i></a>4次断开过程</h4>
-      <p>1 当主机A完成数据传输后,将控制位FIN置1,提出停止TCP连接的请求<br>2 主机B收到FIN后对其作出响应,确认这一方向上的TCP连接将关闭,将ACK置1<br>3 由B 端再提出反方向的关闭请求,将FIN置1<br>4 主机A对主机B的请求进行确认,将ACK置1,双方向的关闭结束.<br>由TCP的三次握手和四次断开可以看出,TCP使用面向连接的通信方式,大大提高了数据通信的可靠性,使发送数据端<br>和接收端在数据正式传输前就有了交互,为数据正式传输打下了可靠的基础<br>名词解释<br>ACK TCP报头的控制位之一,对数据进行确认.确认由目的端发出,用它来告诉发送端这个序列号之前的数据段<br>都收到了.比如,确认号为X,则表示前X-1个数据段都收到了,只有当ACK=1时,确认号才有效,当ACK=0时,确认号无效,这时会要求重传数据,保证数据的完整性.<br>SYN 同步序列号,TCP建立连接时将这个位置1<br>FIN 发送端完成发送任务位,当TCP完成数据传输需要断开时,提出断开连接的一方将这位置1</p>
-<p><strong>为什么TCP协议终止链接要四次？</strong></p>
-<p>1、当主机A确认发送完数据且知道B已经接受完了，想要关闭发送数据口（当然确认信号还是可以发），就会发FIN给主机B。</p>
-<p>2、主机B收到A发送的FIN，表示收到了，就会发送ACK回复。</p>
-<p>3、但这是B可能还在发送数据，没有想要关闭数据口的意思，所以FIN与ACK不是同时发送的，而是等到B数据发送完了，才会发送FIN给主机A。</p>
-<p>4、A收到B发来的FIN，知道B的数据也发送完了，回复ACK， A等待2MSL以后，没有收到B传来的任何消息，知道B已经收到自己的ACK了，A就关闭链接，B也关闭链接了</p>
-<p><strong>A为什么等待2MSL，从TIME_WAIT到CLOSE？</strong></p>
-<p>在Client发送出最后的ACK回复，但该ACK可能丢失。Server如果没有收到ACK，将不断重复发送FIN片段。所以Client不能立即关闭，它必须确认Server接收到了该ACK。Client会在发送出ACK之后进入到TIME_WAIT状态。Client会设置一个计时器，等待2MSL的时间。如果在该时间内再次收到FIN，那么Client会重发ACK并再次等待2MSL。所谓的2MSL是两倍的MSL(Maximum Segment Lifetime)。MSL指一个片段在网络中最大的存活时间，2MSL就是一个发送和一个回复所需的最大时间。如果直到2MSL，Client都没有再次收到FIN，那么Client推断ACK已经被成功接收，则结束TCP连接。</p>
-
-        <h4 id="另一种解释："   >
-          <a href="#另一种解释：" class="heading-link"><i class="fas fa-link"></i></a>另一种解释：</h4>
-      <p>这是因为服务端的LISTEN状态下的SOCKET当收到SYN报文的建连请求后，它可以把ACK和SYN（ACK起应答作用，而SYN起同步作用）放在一个报文里来发送。但关闭连接时，当收到对方的FIN报文通知时，它仅仅表示对方没有数据发送给你了；但未必你所有的数据都全部发送给对方了，所以你可以未必会马上会关闭SOCKET,也即你可能还需要发送一些数据给对方之后，再发送FIN报文给对方来表示你同意现在可以关闭连接了，所以它这里的ACK报文和FIN报文多数情况下都是分开发送的。</p>
-<p>为什么不能两次握手能进行连接？</p>
-<p>我们知道，3次握手完成两个重要的功能，既要双方做好发送数据的准备工作(双方都知道彼此已准备好)，也要允许双方就初始序列号进行协商，这个序列号在握手过程中被发送和确认。<br>现在把三次握手改成仅需要两次握手，死锁是可能发生的。作为例子，考虑计算机S和C之间的通信，假定C给S发送一个连接请求分组，S收到了这个分组，并发送了确认应答分组。按照两次握手的协定，S认为连接已经成功地建立了，可以开始发送数据分组。可是，C在S的应答分组在传输中被丢失的情况下，将不知道S是否已准备好，不知道S建立什么样的序列号，C甚至怀疑S是否收到自己的连接请求分组。在这种情况下，C认为连接还未建立成功，将忽略S发来的任何数据分组，只等待连接确认应答分组。而S在发出的分组超时后，重复发送同样的分组。这样就形成了死锁。</p>
-<p>参考：<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="http://blog.chinaunix.net/uid-25002135-id-3314682.html" >http://blog.chinaunix.net/uid-25002135-id-3314682.html</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span><br><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="http://www.cnblogs.com/vamei/archive/2012/12/16/2812188.html" >http://www.cnblogs.com/vamei/archive/2012/12/16/2812188.html</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p>我们再用一张图来展示MVC模式各层之间的关系</p>
+<p><img src="https://doubler.cn/2020/02/09/%E7%A7%8B%E6%8B%9B%E5%A4%8D%E4%B9%A0%E8%AE%A1%E5%88%92-Vue%E7%9F%A5%E8%AF%86%E7%82%B93/MVC%E6%A8%A1%E5%BC%8F.png"></p>
+<p>从这张图中我们就能看出MVC模式两个很明显的问题：</p>
+<ul>
+<li>Model和View层直接进行数据的交换，导致这两层耦合度过高</li>
+<li>所有的逻辑都写在Controller，导致Controller层很容易臃肿</li>
+</ul>
+<p>而这两个缺陷，使得MVC模式在前端应用复杂度日益提高的今天不再适用。</p>
+<p>在HTML5出现之初的时候，由于HTML5具备开发APP的能力（且有不错的优势：可以跨平台、快速迭代和上线等），所以很多公司开始使用H5来代替Native。所以人们开始在前端的开发中也引入MVC模式，在处理简单的应用时MVC还是发挥了不错的效果。但是随着H5的不断发展，人们喜欢使用H5开发的应用也能和Native媲美，或者接近原生APP的体验效果，于是前端应用的复杂度越来越高，这逐渐就暴露了MVC模式在前端开发的三个痛点：</p>
+<ul>
+<li>开发者在代码中大量调用相同的 DOM API，处理繁琐 ，操作冗余，使得代码难以维护</li>
+<li>大量的DOM 操作使页面渲染性能降低，加载速度变慢，影响用户体验。</li>
+<li>当 Model 频繁发生变化，开发者需要主动更新到View ；当用户的操作导致 Model 发生变化，开发者同样需要将变化的数据同步到Model 中，这样的工作不仅繁琐，而且很难维护复杂多变的数据状态。</li>
+</ul>
+<p>早期jQuery的出现就是为了使得前端能更简洁的操作DOM，但是它只解决了一个问题，所以jQuery现在也逐渐退出了舞台。</p>
+<p>MVVM模式框架的出现完美的解决了以上三个问题。所以这就是MVVM与MVC最大的不同</p>
 
       
 
@@ -251,7 +261,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">网络协议</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
         		</li>
       		
 		</ul>
@@ -307,7 +317,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://upain.icu/2020/05/01/tcp/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://upain.icu/2020/05/29/mvvm/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -321,18 +331,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/05/29/mvvm/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/06/01/ncm/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          理解MVVM模型
+          nvm安装的时候遇到的一些坑
         
       </div>
     </a>
   
   
-    <a href="/2020/04/30/array/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">为什么大多数编程语言中，数组要从 0 开始编号，而不是从 1 开始呢</div>
+    <a href="/2020/05/01/tcp/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">三次握手连接四次握手断开</div>
       <i class="icon-circle-right"></i>
     </a>
   

@@ -149,6 +149,85 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-key" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/25/key/">Vue源码阅读回答一些常见问题</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/25/key/" class="archive-article-date">
+  	<time datetime="2020-03-25T08:12:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="为什么data是一个函数"   >
+          <a href="#为什么data是一个函数" class="heading-link"><i class="fas fa-link"></i></a>为什么data是一个函数</h3>
+      <p>Vue组件可能存在多个实例，如果使用对象形式定义data，则会导致他们共用一个对象，那么状态变更的时候会影响所有的组件。这是不合理的，</p>
+<p>采用函数形式定义，在initData时会将其作为全新的data对象，有效规避多实例之间的状态污染问题，而在vue跟实例过程中则不存在该限制，也是因为实例只有一个，不需要担心这个情况</p>
+        
+          <a class="article-more-a" href="/2020/03/25/key/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/25/key/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-this" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
