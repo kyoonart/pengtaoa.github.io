@@ -405,53 +405,9 @@
 <li>向上，该层与View层进行双向数据绑定</li>
 <li>向下，该层与Model层通过接口请求进行数据交互</li>
 </ul>
-<p><img src="https://doubler.cn/2020/02/09/%E7%A7%8B%E6%8B%9B%E5%A4%8D%E4%B9%A0%E8%AE%A1%E5%88%92-Vue%E7%9F%A5%E8%AF%86%E7%82%B93/MVVM%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84.png"></p>
-<p>而Vue就是一种基于MVVM结构的框架</p>
-<h4 id="mvvm组成部分"><a href="#mvvm组成部分" class="headerlink" title="mvvm组成部分"></a>mvvm组成部分</h4><p><img src="https://doubler.cn/2020/02/09/%E7%A7%8B%E6%8B%9B%E5%A4%8D%E4%B9%A0%E8%AE%A1%E5%88%92-Vue%E7%9F%A5%E8%AF%86%E7%82%B93/%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84.png"></p>
-<h4 id="view"><a href="#view" class="headerlink" title="view"></a>view</h4><p>View是视图层，也就是通常所说的用户界面。前端主要由HTML和CSS构成，为了更方便的展示ViewModel或Model层的数据，已经产生了各种各样的前后端模板语言。各大MVVM框架，如Vue.js、AngularJS、EJS等也都有自己用来构建用户界面的内置模板语言。</p>
-<h4 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h4><p>Model指数据模型，泛指后端进行的各种业务逻辑处理和数据操控，主要围绕数据库系统展开。这里的难点主要在于需要和前端约定统一的接口规则。</p>
-<h4 id="ViewModel"><a href="#ViewModel" class="headerlink" title="ViewModel"></a>ViewModel</h4><p>ViewModel是由前端开发人员组织生成和维护的视图数据层。在这一层中，前端开发人员对从后端获取的Model数据进行转换，做二次封装，以生成符合View层使用预期的视图数据模型</p>
-<p><strong>注意：</strong>ViewModel所封装出来的数据模型包括视图的状态和行为两部分，而Model层的数据模型只包含状态</p>
-<ul>
-<li>视图状态：页面这一块展示什么，在那一块展示什么</li>
-<li>视图行为：页面加载完成时发生什么，点击某一块发生什么，也就是交互</li>
-</ul>
-<p>视图状态和行为都封装在了ViewModel里，这样的封装使得ViewModel可以完整地去描述View层。由于实现了双向绑定，ViewModel的内容会实时展现在View层，因此开发者不必在低效而又麻烦得通过去操作DOM来更新视图了。</p>
-<p>MVVM 框架已经把最脏最累的一块做好了，我们开发者只需要处理和维护 ViewModel，更新数据视图就会自动得到相应更新，真正实现 <code>事件驱动编程</code>。</p>
-<p>View 层展现的不是 <code>Model</code> 层的数据，而是 <code>ViewModel</code> 的数据，由 <code>ViewModel</code> 负责与 <code>Model</code> 层交互，<code>这就完全解耦了 View 层和 Model 层，这个解耦是至关重要的，它是前后端分离方案实施的重要一环</code>。</p>
-<h2 id="MVVM模式的优点"><a href="#MVVM模式的优点" class="headerlink" title="MVVM模式的优点"></a>MVVM模式的优点</h2><p>MVVM引入了ViewModel的几大好处有：</p>
-<ul>
-<li>低耦合：视图可以独立于Model的变化和修改，当View变化的时候Model可以不变，同理Model变化的时候View也可不变。</li>
-<li>可复用：可以把一些视图逻辑放在一个ViewModel里面，让很多View重用这段视图逻辑，这也就是我们常说的组件封装与使用。</li>
-<li>独立开发：开发人员可以专注于业务逻辑和数据的开发（及专注于ViewModel层），设计人员可以专注于页面设计</li>
-<li>可测试：页面通常难以测试，但是现在我们可以通过针对ViewModel来进行测试</li>
-</ul>
-<h2 id="MVVM与MVC的区别"><a href="#MVVM与MVC的区别" class="headerlink" title="MVVM与MVC的区别"></a>MVVM与MVC的区别</h2><p>MVC模式由三部分组成：</p>
-<ul>
-<li>Model：管理数据</li>
-<li>View：UI布局，展示数据</li>
-<li>Controller：响应用户操作，并将View的变化更新到Model上</li>
-</ul>
-<p>那么整个流程是这样的</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">用户操作 -&gt; View接收到用户的输入点击等操作 </span><br><span class="line">-&gt; Controller进行业务逻辑处理，通过直接调用模型提供的方法来操作模型</span><br><span class="line">-&gt; Model数据持久化 -&gt; 将结果返回到View上</span><br></pre></td></tr></table></figure>
-
-<p>我们再用一张图来展示MVC模式各层之间的关系</p>
-<p><img src="https://doubler.cn/2020/02/09/%E7%A7%8B%E6%8B%9B%E5%A4%8D%E4%B9%A0%E8%AE%A1%E5%88%92-Vue%E7%9F%A5%E8%AF%86%E7%82%B93/MVC%E6%A8%A1%E5%BC%8F.png"></p>
-<p>从这张图中我们就能看出MVC模式两个很明显的问题：</p>
-<ul>
-<li>Model和View层直接进行数据的交换，导致这两层耦合度过高</li>
-<li>所有的逻辑都写在Controller，导致Controller层很容易臃肿</li>
-</ul>
-<p>而这两个缺陷，使得MVC模式在前端应用复杂度日益提高的今天不再适用。</p>
-<p>在HTML5出现之初的时候，由于HTML5具备开发APP的能力（且有不错的优势：可以跨平台、快速迭代和上线等），所以很多公司开始使用H5来代替Native。所以人们开始在前端的开发中也引入MVC模式，在处理简单的应用时MVC还是发挥了不错的效果。但是随着H5的不断发展，人们喜欢使用H5开发的应用也能和Native媲美，或者接近原生APP的体验效果，于是前端应用的复杂度越来越高，这逐渐就暴露了MVC模式在前端开发的三个痛点：</p>
-<ul>
-<li>开发者在代码中大量调用相同的 DOM API，处理繁琐 ，操作冗余，使得代码难以维护</li>
-<li>大量的DOM 操作使页面渲染性能降低，加载速度变慢，影响用户体验。</li>
-<li>当 Model 频繁发生变化，开发者需要主动更新到View ；当用户的操作导致 Model 发生变化，开发者同样需要将变化的数据同步到Model 中，这样的工作不仅繁琐，而且很难维护复杂多变的数据状态。</li>
-</ul>
-<p>早期jQuery的出现就是为了使得前端能更简洁的操作DOM，但是它只解决了一个问题，所以jQuery现在也逐渐退出了舞台。</p>
-<p>MVVM模式框架的出现完美的解决了以上三个问题。所以这就是MVVM与MVC最大的不同</p>
-
+        
+          <a class="article-more-a" href="/2020/05/29/mvvm/#more">more >></a>
+        
       
 
       
