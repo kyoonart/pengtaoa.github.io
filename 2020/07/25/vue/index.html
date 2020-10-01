@@ -15,17 +15,17 @@
 <meta property="og:site_name" content="Escape">
 <meta property="og:description" content="一张图了解全貌vue运行机制的全貌">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/12/19/1606e7eaa2a664e8?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/12/19/1606ec3d306ab28f?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/12/19/1606edad5ca9e23d?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/12/21/160770b2a77e084e?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/12/21/1607715c316d4922?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<meta property="og:image" content="https://s1.ax1x.com/2020/10/01/0MPliF.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2020/10/01/0MPJMR.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2020/10/01/0MPUZ6.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2020/10/01/0MPdIO.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2020/10/01/0MPBJe.jpg">
 <meta property="article:published_time" content="2020-07-25T04:26:18.000Z">
-<meta property="article:modified_time" content="2020-09-25T10:27:07.367Z">
+<meta property="article:modified_time" content="2020-10-01T07:05:04.904Z">
 <meta property="article:author" content="Peng tao">
 <meta property="article:tag" content="vue">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2017/12/19/1606e7eaa2a664e8?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/10/01/0MPliF.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Escape" type="application/atom+xml">
   
@@ -180,7 +180,7 @@
         <p>一张图了解全貌vue运行机制的全貌</p>
 <a id="more"></a> 
 
-<p><img src="https://user-gold-cdn.xitu.io/2017/12/19/1606e7eaa2a664e8?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"></p>
+<p><img src="https://s1.ax1x.com/2020/10/01/0MPliF.jpg"></p>
 <p>在 <code>new Vue()</code> 之后。 Vue 会调用 <code>_init</code> 函数进行初始化，也就是这里的 <code>init</code> 过程，它会初始化生命周期、事件、 props、 methods、 data、 computed 与 watch 等。其中最重要的是通过 <code>Object.defineProperty</code> 设置 <code>setter</code> 与 <code>getter</code> 函数，用来实现「<strong>响应式</strong>」以及「<strong>依赖收集</strong>」</p>
 <p>初始化之后调用 <code>$mount</code> 会挂载组件，如果是运行时编译，即不存在 render function 但是存在 template 的情况，需要进行「<strong>编译</strong>」步骤。</p>
 <h4 id="关于两种编译模式"><a href="#关于两种编译模式" class="headerlink" title="关于两种编译模式"></a>关于两种编译模式</h4><p>  Vue 中提供了两种编译模式：</p>
@@ -196,16 +196,16 @@
 <p>  如果在 运行时版本 中，是无法使用 template 模板内容的，因为 运行时版本 中没有编译器</p>
 <p>  也就无法编译 template 模板内容。此时，应该使用 render 函数来渲染组件内容</p>
 <h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><p>compile编译可以分成 <code>parse</code>、<code>optimize</code> 与 <code>generate</code> 三个阶段，最终需要得到 render function</p>
-<p><img src="https://user-gold-cdn.xitu.io/2017/12/19/1606ec3d306ab28f?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"></p>
+<p><img src="https://s1.ax1x.com/2020/10/01/0MPJMR.jpg"></p>
 <h3 id="parse"><a href="#parse" class="headerlink" title="parse"></a>parse</h3><p><code>parse</code> 会用正则等方式解析 template 模板中的指令、class、style等数据，形成AST。</p>
 <h3 id="optimize"><a href="#optimize" class="headerlink" title="optimize"></a>optimize</h3><p><code>optimize</code> 的主要作用是标记 static 静态节点，这是 Vue 在编译过程中的一处优化，后面当 <code>update</code> 更新界面时，会有一个 <code>patch</code> 的过程， diff 算法会直接跳过静态节点，从而减少了比较的过程，优化了 <code>patch</code> 的性能。</p>
 <h3 id="generate"><a href="#generate" class="headerlink" title="generate"></a>generate</h3><p><code>generate</code> 是将 AST 转化成 render function 字符串的过程，得到结果是 render 的字符串以及 staticRenderFns 字符串。</p>
 <p>在经历过 <code>parse</code>、<code>optimize</code> 与 <code>generate</code> 这三个阶段以后，组件中就会存在渲染 VNode 所需的 render function 了。</p>
 <h3 id="响应式"><a href="#响应式" class="headerlink" title="响应式"></a>响应式</h3><p>Vue.js 响应式核心部分</p>
-<p><img src="https://user-gold-cdn.xitu.io/2017/12/19/1606edad5ca9e23d?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"></p>
+<p><img src="https://s1.ax1x.com/2020/10/01/0MPUZ6.jpg"></p>
 <p>在 <code>init</code> 的时候通过 <code>Object.defineProperty</code> 进行了绑定，它使得当被设置的对象被读取的时候会执行 <code>getter</code> 函数，而在当被赋值的时候会执行 <code>setter</code> 函数。</p>
 <p>当 render function 被渲染的时候，因为会读取所需对象的值，所以会触发 <code>getter</code> 函数进行「<strong>依赖收集</strong>」，「<strong>依赖收集</strong>」的目的是将观察者 Watcher 对象存放到当前闭包中的订阅者 Dep 的 subs 中。形成如下所示的如下这样的一个关系。</p>
-<p><img src="https://user-gold-cdn.xitu.io/2017/12/21/160770b2a77e084e?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"></p>
+<p><img src="https://s1.ax1x.com/2020/10/01/0MPdIO.jpg"></p>
 <p>在修改对象的值的时候，会触发对应的 <code>setter</code>， <code>setter</code> 通知之前「<strong>依赖收集</strong>」得到的 Dep 中的每一个 Watcher，告诉它们自己的值改变了，需要重新渲染视图。这时候这些 Watcher 就会开始调用 <code>update</code> 来更新视图，当然这中间还有一个 <code>patch</code> 的过程以及使用队列来异步更新的策略.</p>
 <p><strong>一个对象属性对应一个dep，一个dep对应多个watcher(一个对象属性可能再多个标签使用，那么就会有对应多个watcher，这些watcher都会放入到这个对象属性唯一对应的dep中)，这是Vue1.0的实现，但数据过大时，就会有很多个watcher，就会出现性能问题；所以在Vue2.0中引入的VDOM，给每个vue组件绑定一个watcher，这个组件上的数据的dep中都包含有该watcher，当该组件数据发生变化时，就会通知watcher触发update方法，生成VDOM，和旧的VDOM进行比较，更新改变的部分，极大的减少了watcher的数量，优化了性能；（所以，在Vue2.0中是一个组件对应一个watcher）</strong></p>
 <h3 id="Virtual-DOM-虚拟Dom"><a href="#Virtual-DOM-虚拟Dom" class="headerlink" title="Virtual DOM 虚拟Dom"></a>Virtual DOM 虚拟Dom</h3><p>render function 会被转化成 VNode 节点。Virtual DOM 其实就是一棵以 JavaScript 对象（ VNode 节点）作为基础的树，用对象属性来描述节点，实际上它只是一层对真实 DOM 的抽象。最终可以通过一系列操作使这棵树映射到真实环境上。由于 Virtual DOM 是以 JavaScript 对象为基础而不依赖真实平台环境，所以使它具有了跨平台的能力，比如说浏览器平台、Weex、Node 等。</p>
@@ -216,7 +216,7 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span>&gt;</span>click me<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>这只是一个简单的例子，实际上的节点有更多的属性来标志节点，比如 isStatic （代表是否为静态节点）、 isComment （代表是否为注释节点）等</p>
-<h3 id="更新视图"><a href="#更新视图" class="headerlink" title="更新视图"></a>更新视图</h3><p><img src="https://user-gold-cdn.xitu.io/2017/12/21/1607715c316d4922?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"></p>
+<h3 id="更新视图"><a href="#更新视图" class="headerlink" title="更新视图"></a>更新视图</h3><p><img src="https://s1.ax1x.com/2020/10/01/0MPBJe.jpg"></p>
 <p>在修改一个对象值的时候，会通过 <code>setter -&gt; Watcher -&gt; update</code> 的流程来修改对应的视图，那么最终是如何更新视图的呢？</p>
 <p>当数据变化后，执行 render function 就可以得到一个新的 VNode 节点，我们如果想要得到新的视图，最简单粗暴的方法就是直接解析这个新的 VNode 节点，然后用 <code>innerHTML</code> 直接全部渲染到真实 DOM 中。但是其实我们只对其中的一小块内容进行了修改，这样做似乎有些「<strong>浪费</strong>」。</p>
 <p>那么我们为什么不能只修改那些「改变了的地方」呢？这个时候就要介绍我们的「**<code>patch</code><strong>」了。我们会将新的 VNode 与旧的 VNode 一起传入 <code>patch</code> 进行比较，经过 diff 算法得出它们的「</strong>差异<strong>」。最后我们只需要将这些「</strong>差异**」的对应 DOM 进行修改即可。下一篇再分析分析patch过程到底是如何进行的~</p>
