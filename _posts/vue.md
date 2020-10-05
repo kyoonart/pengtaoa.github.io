@@ -8,7 +8,7 @@ tags: vue
 
 <!-- more --> 
 
-![](https://user-gold-cdn.xitu.io/2017/12/19/1606e7eaa2a664e8?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![](https://s1.ax1x.com/2020/10/01/0MPliF.jpg)
 
 在 `new Vue()` 之后。 Vue 会调用 `_init` 函数进行初始化，也就是这里的 `init` 过程，它会初始化生命周期、事件、 props、 methods、 data、 computed 与 watch 等。其中最重要的是通过 `Object.defineProperty` 设置 `setter` 与 `getter` 函数，用来实现「**响应式**」以及「**依赖收集**」
 
@@ -48,7 +48,7 @@ tags: vue
 
 compile编译可以分成 `parse`、`optimize` 与 `generate` 三个阶段，最终需要得到 render function
 
-![](https://user-gold-cdn.xitu.io/2017/12/19/1606ec3d306ab28f?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![](https://s1.ax1x.com/2020/10/01/0MPJMR.jpg)
 
 ### parse
 
@@ -68,7 +68,7 @@ compile编译可以分成 `parse`、`optimize` 与 `generate` 三个阶段，最
 
 Vue.js 响应式核心部分
 
-![](https://user-gold-cdn.xitu.io/2017/12/19/1606edad5ca9e23d?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![](https://s1.ax1x.com/2020/10/01/0MPUZ6.jpg)
 
 在 `init` 的时候通过 `Object.defineProperty` 进行了绑定，它使得当被设置的对象被读取的时候会执行 `getter` 函数，而在当被赋值的时候会执行 `setter` 函数。
 
@@ -76,7 +76,7 @@ Vue.js 响应式核心部分
 
 
 
-![](https://user-gold-cdn.xitu.io/2017/12/21/160770b2a77e084e?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![](https://s1.ax1x.com/2020/10/01/0MPdIO.jpg)
 
 在修改对象的值的时候，会触发对应的 `setter`， `setter` 通知之前「**依赖收集**」得到的 Dep 中的每一个 Watcher，告诉它们自己的值改变了，需要重新渲染视图。这时候这些 Watcher 就会开始调用 `update` 来更新视图，当然这中间还有一个 `patch` 的过程以及使用队列来异步更新的策略.
 
@@ -112,7 +112,7 @@ render function 会被转化成 VNode 节点。Virtual DOM 其实就是一棵以
 
 ### 更新视图
 
-![](https://user-gold-cdn.xitu.io/2017/12/21/1607715c316d4922?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![](https://s1.ax1x.com/2020/10/01/0MPBJe.jpg)
 
 在修改一个对象值的时候，会通过 `setter -> Watcher -> update` 的流程来修改对应的视图，那么最终是如何更新视图的呢？
 
