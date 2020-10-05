@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://upain.icu">
-  <title>Tag: this | Escape</title>
+  <title>处理异步请求的实践 | Escape</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Escape">
-<meta property="og:url" content="http://upain.icu/tags/this/index.html">
+  <meta name="description" content="在小米实习的一点小小收货总结下来！关于异步请求的方案总结 在一般情况下，我们调用异步方法后会有某些标识用于提示用户。比如表单点击确定后按钮会变成loading或disabled的状态，请求成功或失败总会有些提示给到用户。 首先我们声明一个示例异步函数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="处理异步请求的实践">
+<meta property="og:url" content="http://upain.icu/2020/09/05/async/index.html">
 <meta property="og:site_name" content="Escape">
+<meta property="og:description" content="在小米实习的一点小小收货总结下来！关于异步请求的方案总结 在一般情况下，我们调用异步方法后会有某些标识用于提示用户。比如表单点击确定后按钮会变成loading或disabled的状态，请求成功或失败总会有些提示给到用户。 首先我们声明一个示例异步函数">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-09-05T08:20:37.000Z">
+<meta property="article:modified_time" content="2020-10-05T08:34:22.113Z">
 <meta property="article:author" content="Peng tao">
-<meta property="article:tag" content="pengtaoa">
+<meta property="article:tag" content="javascript">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Escape" type="application/atom+xml">
@@ -147,60 +151,192 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-async" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/23/this/" class="archive-article-date">
-  	<time datetime="2020-03-23T07:42:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-23</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/23/this/">关于this</a>
+    <h1 class="article-title" itemprop="name">
+      处理异步请求的实践
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/09/05/async/" class="archive-article-date">
+  	<time datetime="2020-09-05T08:20:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在小米实习的一点小小收货总结下来！关于异步请求的方案总结</p>
+<p>在一般情况下，我们调用异步方法后会有某些标识用于提示用户。比如表单点击确定后按钮会变成<code>loading</code>或<code>disabled</code>的状态，请求成功或失败总会有些提示给到用户。</p>
+<p>首先我们声明一个示例异步函数</p>
+<a id="more"></a>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一个一秒内返回的异步函数</span></span><br><span class="line"><span class="comment">// 二分之一的几率成功返回随机字符串</span></span><br><span class="line"><span class="keyword">const</span> asyncFunction = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> r = <span class="built_in">Math</span>.random();</span><br><span class="line">      <span class="keyword">if</span> (r &lt; <span class="number">0.5</span>) &#123;</span><br><span class="line">        resolve(<span class="built_in">Math</span>.random().toString(<span class="number">16</span>).slice(<span class="number">-8</span>));</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        reject(<span class="string">&quot;Something went wrong&quot;</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;; </span><br></pre></td></tr></table></figure>
+
+<h2 id="传统解决方案"><a href="#传统解决方案" class="headerlink" title="传统解决方案"></a>传统解决方案</h2><p>使用当下流行的声明式UI框架，我们需要为每个异步请求提供标志状态。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="built_in">super</span>();</span><br><span class="line">    <span class="built_in">this</span>.state = &#123;</span><br><span class="line">      title: &#123;</span><br><span class="line">        loading: <span class="literal">false</span>,</span><br><span class="line">        value: <span class="literal">null</span>,</span><br><span class="line">        error: <span class="literal">null</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      author: &#123;</span><br><span class="line">        loading: <span class="literal">false</span>,</span><br><span class="line">        value: <span class="literal">null</span>,</span><br><span class="line">        error: <span class="literal">null</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">async</span> fetchTitle() &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; title &#125; = <span class="built_in">this</span>.state;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      title.loading = <span class="literal">true</span>;</span><br><span class="line">      title.value = <span class="literal">null</span>;</span><br><span class="line">      title.error = <span class="literal">null</span>;</span><br><span class="line">      <span class="built_in">this</span>.setState(&#123; title &#125;);</span><br><span class="line">      title.value = <span class="keyword">await</span> asyncFunction();</span><br><span class="line">      <span class="built_in">this</span>.setState(&#123; title &#125;);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">      title.error = e;</span><br><span class="line">      <span class="built_in">this</span>.setState(&#123; title &#125;);</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">      title.loading = <span class="literal">false</span>;</span><br><span class="line">      <span class="built_in">this</span>.setState(&#123; title &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">async</span> fetchAuthor() &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; author &#125; = <span class="built_in">this</span>.state;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      author.loading = <span class="literal">true</span>;</span><br><span class="line">    	author.value = <span class="literal">null</span>;</span><br><span class="line">    	author.error = <span class="literal">null</span>;</span><br><span class="line">      <span class="built_in">this</span>.setState(&#123; author &#125;);</span><br><span class="line">      author.value = <span class="keyword">await</span> asyncFunction();</span><br><span class="line">      <span class="built_in">this</span>.setState(&#123; author &#125;);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">      author.error = e;</span><br><span class="line">      <span class="built_in">this</span>.setState(&#123; author &#125;);</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">      author.loading = <span class="literal">false</span>;</span><br><span class="line">      <span class="built_in">this</span>.setState(&#123; author &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  componentWillMount() &#123;</span><br><span class="line">    <span class="built_in">this</span>.fetchTitle();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; title, author &#125; = <span class="built_in">this</span>.state;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &#123;<span class="comment">/* Title */</span>&#125;</span><br><span class="line">        &#123;title.error ? (</span><br><span class="line">          &lt;p style=&#123;&#123; <span class="attr">color</span>: <span class="string">&quot;red&quot;</span> &#125;&#125;&gt;&#123;title.error&#125;&lt;/p&gt;</span><br><span class="line">        ) : (</span><br><span class="line">          &lt;h1&gt;Title: &#123;title.loading ? <span class="string">&quot;Loading...&quot;</span> : title.value&#125;&lt;/h1&gt;</span><br><span class="line">        )&#125;</span><br><span class="line"></span><br><span class="line">        &#123;<span class="comment">/* Author */</span>&#125;</span><br><span class="line">        &#123;author.error ? (</span><br><span class="line">          &lt;p style=&#123;&#123; <span class="attr">color</span>: <span class="string">&quot;red&quot;</span> &#125;&#125;&gt;&#123;author.error&#125;&lt;/p&gt;</span><br><span class="line">        ) : (</span><br><span class="line">          &lt;p&gt;Author: &#123;author.loading ? <span class="string">&quot;Loading...&quot;</span> : author.value&#125;&lt;/p&gt;</span><br><span class="line">        )&#125;</span><br><span class="line"></span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;button</span><br><span class="line">            onClick=&#123;<span class="built_in">this</span>.fetchAuthor.bind(<span class="built_in">this</span>)&#125;</span><br><span class="line">            disabled=&#123;author.loading&#125;</span><br><span class="line">          &gt;</span><br><span class="line">            Load Author</span><br><span class="line">          &lt;/button&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>代码很长不想看？是的，确实很长，但却是最简单的逻辑，仅仅是<strong>调用异步方法并显示数据</strong>而已。长久以来，我们不得不为异步数据添加额外的标志状态用于提示用户，这导致我们的代码又长又臭。而且，每个异步方法的调用方式都是相同的，如代码中的<code>fetchTitle</code>和<code>fetchAuthor</code>，我们不得已一遍又一遍地复制粘贴相同的代码。</p>
+<p>为什么不封装起来复用这些逻辑？究其原因，我们调用异步方法以后需要修改的不是普通变量而是组件的状态，纯逻辑复用难，是所有框架的硬伤。封装为组件是可行的，但会失去灵活性，React 还好，在 Vue template 中写逻辑你可能会抓狂。</p>
+<h4 id="React-Hooks"><a href="#React-Hooks" class="headerlink" title="React Hooks"></a>React Hooks</h4><p>Hooks的出现带来了一种编程思想的转变，只要使用得当，它可以帮助我们解决几乎任何逻辑复用的问题。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useState, useEffect, useCallback &#125; <span class="keyword">from</span> <span class="string">&#x27;React&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> useAsync = <span class="function">(<span class="params">asyncFunc, immediate = <span class="literal">true</span></span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> [pending, setPending] = useState(<span class="number">0</span>);</span><br><span class="line">  <span class="keyword">const</span> [value, setValue] = useState(<span class="literal">null</span>);</span><br><span class="line">  <span class="keyword">const</span> [error, setError] = useState(<span class="literal">null</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> execute = useCallback(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    setPending(<span class="function"><span class="params">val</span> =&gt;</span> val + <span class="number">1</span>);</span><br><span class="line">    setValue(<span class="literal">null</span>);</span><br><span class="line">    setError(<span class="literal">null</span>);</span><br><span class="line">    <span class="keyword">return</span> asyncFunc()</span><br><span class="line">      .then(<span class="function"><span class="params">response</span> =&gt;</span> setValue(response))</span><br><span class="line">      .catch(<span class="function"><span class="params">error</span> =&gt;</span> setError(error))</span><br><span class="line">      .finally(<span class="function">() =&gt;</span> setPending(<span class="function"><span class="params">val</span> =&gt;</span> val - <span class="number">1</span>));</span><br><span class="line">  &#125;, [asyncFunc]);</span><br><span class="line"></span><br><span class="line">  useEffect(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (immediate) &#123;</span><br><span class="line">      execute();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, [execute, immediate]);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123; execute, value, error, <span class="attr">pending</span>: pending &gt; <span class="number">0</span> &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>这实在是一种很美妙的复用方式，现在我们可以这样来声明状态</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> title = useAsync(asyncFunction);</span><br><span class="line">  <span class="keyword">const</span> author = useAsync(asyncFunction, <span class="literal">false</span>);</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &#123;<span class="comment">/* Title */</span>&#125;</span><br><span class="line">      &#123;title.error ? (</span><br><span class="line">        &lt;p style=&#123;&#123; <span class="attr">color</span>: <span class="string">&quot;red&quot;</span> &#125;&#125;&gt;&#123;title.error&#125;&lt;/p&gt;</span><br><span class="line">      ) : (</span><br><span class="line">        &lt;h1&gt;Title: &#123;title.pending ? <span class="string">&quot;Loading...&quot;</span> : title.value&#125;&lt;/h1&gt;</span><br><span class="line">      )&#125;</span><br><span class="line"></span><br><span class="line">      &#123;<span class="comment">/* Author */</span>&#125;</span><br><span class="line">      &#123;author.error ? (</span><br><span class="line">        &lt;p style=&#123;&#123; <span class="attr">color</span>: <span class="string">&quot;red&quot;</span> &#125;&#125;&gt;&#123;author.error&#125;&lt;/p&gt;</span><br><span class="line">      ) : (</span><br><span class="line">        &lt;p&gt;Author: &#123;author.pending ? <span class="string">&quot;Loading...&quot;</span> : author.value&#125;&lt;/p&gt;</span><br><span class="line">      )&#125;</span><br><span class="line">      &lt;button onClick=&#123;author.execute&#125;&gt;Load Author&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>再也不需要声明烦人的标志位了，也不需要手动<code>try catch</code>了，都交给<code>useAsync</code>解决。<code>useAsync</code>允许立即调用一次异步函数，也可以手动调用<code>execute</code>函数，这保证了灵活性。</p>
+<h2 id="Composition-API"><a href="#Composition-API" class="headerlink" title="Composition API"></a>Composition API</h2><p>截至2020年4月7日，Vue 3.x依然未能发布正式版本，不过我们可以通过插件的方式，在Vue 2.x中尝鲜Composition API。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; ref, computed, reactive &#125; <span class="keyword">from</span> <span class="string">&quot;@vue/composition-api&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">useAsync</span>(<span class="params">asyncFunc, immediate = true</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> pendingCount = ref(<span class="number">0</span>);</span><br><span class="line">  <span class="keyword">const</span> pending = computed(<span class="function">() =&gt;</span> pendingCount.value &gt; <span class="number">0</span>);</span><br><span class="line">  <span class="keyword">const</span> value = ref(<span class="literal">null</span>);</span><br><span class="line">  <span class="keyword">const</span> error = ref(<span class="literal">null</span>);</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">execute</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    pendingCount.value++;</span><br><span class="line">    value.value = <span class="literal">null</span>;</span><br><span class="line">    error.value = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> asyncFunc()</span><br><span class="line">      .then(<span class="function"><span class="params">res</span> =&gt;</span> (value.value = res))</span><br><span class="line">      .catch(<span class="function"><span class="params">err</span> =&gt;</span> (error.value = err))</span><br><span class="line">      .finally(<span class="function">() =&gt;</span> pendingCount.value--);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (immediate) &#123;</span><br><span class="line">    execute();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> reactive(&#123;</span><br><span class="line">    pending,</span><br><span class="line">    value,</span><br><span class="line">    error,</span><br><span class="line">    execute</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在组件中使用它，同样很简单</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;p style&#x3D;&quot;color: red&quot; v-if&#x3D;&quot;title.error&quot;&gt;&#123;&#123;title.error&#125;&#125;&lt;&#x2F;p&gt;</span><br><span class="line">    &lt;h1 v-else&gt;Title: &#123;&#123;title.pending ? &#39;Loading...&#39;:title.value&#125;&#125;&lt;&#x2F;h1&gt;</span><br><span class="line">    &lt;p style&#x3D;&quot;color: red&quot; v-if&#x3D;&quot;author.error&quot;&gt;&#123;&#123;author.error&#125;&#125;&lt;&#x2F;p&gt;</span><br><span class="line">    &lt;p v-else&gt;Author: &#123;&#123;author.pending ? &#39;Loading...&#39;:author.value&#125;&#125;&lt;&#x2F;p&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;button @click&#x3D;&quot;author.execute&quot;&gt;Load Author&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import &#123; defineComponent &#125; from &quot;@vue&#x2F;composition-api&quot;;</span><br><span class="line">import &#123; useAsync, asyncFunction &#125; from &quot;.&#x2F;utils&quot;;</span><br><span class="line"></span><br><span class="line">export default defineComponent(&#123;</span><br><span class="line">  setup() &#123;</span><br><span class="line">    const title &#x3D; useAsync(asyncFunction);</span><br><span class="line">    const author &#x3D; useAsync(asyncFunction, false);</span><br><span class="line"></span><br><span class="line">    return &#123;</span><br><span class="line">      title,</span><br><span class="line">      author</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>当然，我们也可以自定义或扩展能力，比如把<code>value</code>设置为<code>response.data</code>，把error设置为<code>response.message</code>，截获错误的时候提示错误对话框等等，在不同的项目中扩展不同的能力，是比较方便的。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">this</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://upain.icu/2020/09/05/async/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2020/08/26/vue3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Vue3.0  Composition API</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -223,9 +359,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

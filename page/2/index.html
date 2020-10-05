@@ -149,6 +149,87 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-shouxie" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/13/shouxie/">记录一些常见的手写代码题目</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/13/shouxie/" class="archive-article-date">
+  	<time datetime="2020-04-13T08:30:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="记录一些常见的手写代码题目"   >
+          <a href="#记录一些常见的手写代码题目" class="heading-link"><i class="fas fa-link"></i></a>记录一些常见的手写代码题目</h3>
+      
+        <h3 id="实现数据类型的判断"   >
+          <a href="#实现数据类型的判断" class="heading-link"><i class="fas fa-link"></i></a>实现数据类型的判断</h3>
+      <figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_type</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> res = <span class="built_in">Object</span>.prototype.toString.call(obj);</span><br><span class="line">    <span class="keyword">let</span> arr = res.substr(<span class="number">8</span>).split(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">    <span class="keyword">let</span> x = arr.length - <span class="number">1</span>;</span><br><span class="line">    arr.splice(x, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> arr.join(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//  更加简洁版本</span></span><br><span class="line"><span class="keyword">var</span>  _type = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(obj).slice(<span class="number">8</span>, <span class="number">-1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 关键点 利用了 Object.prototype.toString()这个方法(数据类型内部有个[[call]]属性，里面存储了每种数据类型，这个属性只有Object.prototype.toString()能访问到)</span></span><br></pre></td></tr></table></div></figure>
+        
+          <a class="article-more-a" href="/2020/04/13/shouxie/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/13/shouxie/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-key" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -671,6 +752,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">性能优化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
             
             <div class="clearfix"></div>
