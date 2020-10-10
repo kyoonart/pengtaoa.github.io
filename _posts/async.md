@@ -31,7 +31,7 @@ const asyncFunction = () => {
 
 ## 传统解决方案
 
-使用当下流行的声明式UI框架，我们需要为每个异步请求提供标志状态。
+使用当下流行React框架，我们需要为每个异步请求提供标志状态。
 
 ```js
 class App extends React.Component {
