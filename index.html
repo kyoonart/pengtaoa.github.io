@@ -636,9 +636,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="为什么大多数编程语言中，数组要从-0-开始编号，而不是从-1-开始呢？"   >
-          <a href="#为什么大多数编程语言中，数组要从-0-开始编号，而不是从-1-开始呢？" class="heading-link"><i class="fas fa-link"></i></a>为什么大多数编程语言中，数组要从 0 开始编号，而不是从 1 开始呢？</h3>
-      <p>从数组存储的内存模型上来看，“下标”最确切的定义应该是“偏移（offset）”。如果用 a 来表示数组的首地址，a[0] 就是偏移为 0 的位置，也就是首地址，a[k] 就表示偏移 k 个 type_size 的位置，所以计算 a[k] 的内存地址只需要用这个公式</p>
+        <h3 id="为什么大多数编程语言中，数组要从-0-开始编号，而不是从-1-开始呢？"><a href="#为什么大多数编程语言中，数组要从-0-开始编号，而不是从-1-开始呢？" class="headerlink" title="为什么大多数编程语言中，数组要从 0 开始编号，而不是从 1 开始呢？"></a>为什么大多数编程语言中，数组要从 0 开始编号，而不是从 1 开始呢？</h3><p>从数组存储的内存模型上来看，“下标”最确切的定义应该是“偏移（offset）”。如果用 a 来表示数组的首地址，a[0] 就是偏移为 0 的位置，也就是首地址，a[k] 就表示偏移 k 个 type_size 的位置，所以计算 a[k] 的内存地址只需要用这个公式</p>
 <p>a[k]address=baseaddress+k∗typesizea[k]address=baseaddress+k∗typesize</p>
         
           <a class="article-more-a" href="/2020/04/30/array/#more">more >></a>
