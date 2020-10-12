@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://upain.icu">
   <title>Es6中的class中super问题 | Escape</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="ES6中super指向的问题。super.function、super.attribute和super()分别指向什么，傻傻分不清楚   super这个关键字，既可以当作函数使用，也可以当作对象使用。在这两种情况下，它的用法完全不同。 1:第一种情况：super作为函数调用时，代表父类的构造函数。ES6 要求，子类的构造函数必须执行一次super&#96;函数。注意,作为函数时，super() 只能用在子">
+  <meta name="description" content="众所周知，在ES6中，如果我们想使用class来实现继承，子类就必须在构造函数constructor中调用super()方法，否则新建实例时就会报错。这是因为子类没有自己的this对象，而是继承父类的this对象，然后对其进行加工。所以我们需要super()函数在子类中初始化this，并继承父类的属性。 super这个关键字，既可以当作函数使用，也可以当作对象使用。在这两种情况下，它的用法完全不同">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Es6中的class中super问题">
 <meta property="og:url" content="http://upain.icu/2020/03/22/class/index.html">
 <meta property="og:site_name" content="Escape">
-<meta property="og:description" content="ES6中super指向的问题。super.function、super.attribute和super()分别指向什么，傻傻分不清楚   super这个关键字，既可以当作函数使用，也可以当作对象使用。在这两种情况下，它的用法完全不同。 1:第一种情况：super作为函数调用时，代表父类的构造函数。ES6 要求，子类的构造函数必须执行一次super&#96;函数。注意,作为函数时，super() 只能用在子">
+<meta property="og:description" content="众所周知，在ES6中，如果我们想使用class来实现继承，子类就必须在构造函数constructor中调用super()方法，否则新建实例时就会报错。这是因为子类没有自己的this对象，而是继承父类的this对象，然后对其进行加工。所以我们需要super()函数在子类中初始化this，并继承父类的属性。 super这个关键字，既可以当作函数使用，也可以当作对象使用。在这两种情况下，它的用法完全不同">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-03-22T13:54:08.000Z">
-<meta property="article:modified_time" content="2020-09-29T13:09:28.403Z">
+<meta property="article:modified_time" content="2020-10-12T09:28:41.997Z">
 <meta property="article:author" content="Peng tao">
 <meta property="article:tag" content="Es6">
 <meta name="twitter:card" content="summary">
@@ -171,7 +171,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>ES6中super指向的问题。super.function、super.attribute和super()分别指向什么，傻傻分不清楚  </p>
+        <p>众所周知，在ES6中，如果我们想使用class来实现继承，子类就必须在构造函数constructor中调用super()方法，否则新建实例时就会报错。这是因为子类没有自己的this对象，而是继承父类的this对象，然后对其进行加工。所以我们需要super()函数在子类中初始化this，并继承父类的属性。</p>
 <p><code>super</code>这个关键字，既可以当作函数使用，也可以当作对象使用。在这两种情况下，它的用法完全不同。</p>
 <p>1:第一种情况：super<code>作为函数调用时，代表父类的构造函数。ES6 要求，子类的构造函数必须执行一次</code>super`函数。注意,作为函数时，super() 只能用在子类的构造函数之中，用在其他地方就会报错。</p>
 <a id="more"></a> 
