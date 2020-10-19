@@ -27,6 +27,8 @@ var  _type = function(obj) {
 
 ### 实现Promise.All
 
+解释：只有当所有的promise都是resolve时才算成功否则就是reject，如果参数中 `promise` 有一个失败（rejected），此实例回调失败（reject），失败原因的是第一个失败 `promise` 的结果。
+
 ~~~js
 function isPromise(obj) {
     return !!obj && (typeof obj === 'object' || typeof obj === 'function') &&
@@ -49,6 +51,31 @@ function _PromiseAll(arr) {
 }
 // 主要是要知道promise.all做了什么 顺便还了解了promsie.race
 ~~~
+
+### 实现Promise.race
+
+解释：竞速 当某个promise执行完成resolve那么就是resolve
+
+`Promise.race(iterable)` 方法返回一个 `promise`，一旦迭代器中的某个 `promise` 解决或拒绝，返回的 `promise` 就会解决或拒绝。
+
+```js
+function isPromise(obj) {
+    return !!obj && (typeof obj === 'object' || typeof obj === 'function') &&
+        typeof obj.then === 'function';
+}
+function _promiseRace(promises){
+     if(!promises.length) return
+   return new Promise((resolve,reject)=>{
+       promises.forEach(item=>{
+           if(isPromise){
+               item.then(data=>resolve(data))
+           }
+       },reject)
+   })
+       
+   
+}
+```
 
 
 
