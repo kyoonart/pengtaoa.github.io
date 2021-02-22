@@ -149,6 +149,87 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-forof" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/22/forof/">探究Forof实现原理</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/22/forof/" class="archive-article-date">
+  	<time datetime="2020-11-22T15:22:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>探究一下for of实现原理</p>
+<p>for of 是我们经常使用的一个属性，它可以非常方便的遍历数组，除此之外，它还可以用来遍历类数组对象，Set 和 Map 等，那么问题就来了，为什么它可以遍历 Map 却不能遍历普通的对象呢？那就来探索一下 for of 底层的秘密。</p>
+<p>首先，我们知道 for of 是用来遍历可迭代对象的，那么如何判断一个对象是否是可迭代对象呢？ js 引擎是通过判断对象是否具有 <code>Symbol.iterator</code> 来判断的，如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[][<span class="built_in">Symbol</span>.iterator] <span class="comment">// [Function: values]</span></span><br><span class="line">&#123;&#125;[<span class="built_in">Symbol</span>.iterator] <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+
+<p>我们看到数组具有 <code>Symbol.iterator</code> 属性，并返回了一个函数，而对象返回了 undefined 说明没有该属性，所以普通的对象不是可迭代对象。那么 for of 底层是否是通过<code>Symbol.iterator</code> 来实现遍历的呢？我们来验证一下，代码如下：</p>
+        
+          <a class="article-more-a" href="/2020/11/22/forof/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/22/forof/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-async" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -853,82 +934,6 @@
 
 
   
-    <article id="post-eventloop" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/25/eventloop/">事件循环机制（Event Loop）</a>
-    </h1>
-  
-
-        
-        <a href="/2020/04/25/eventloop/" class="archive-article-date">
-  	<time datetime="2020-04-25T08:32:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>事件循环机制（Event Loop）是全面了解javascript代码执行顺序绕不开的一个重要知识点。虽然许多人知道这个知识点非常重要，但是其实很少有人能够真正理解它。特别是在ES6正式支持Promise之后，对于新标准中事件循环的理解就变得更加重要了。这里我们不具体讲Event Loop（有很多文章说得已经足够好了），我们只是做个牵引——为什么需要Event loop和简单介绍。</p>
-        
-          <a class="article-more-a" href="/2020/04/25/eventloop/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/25/eventloop/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -943,7 +948,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 Peng tao
+    		&copy; 2021 Peng tao
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
