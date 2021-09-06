@@ -149,6 +149,89 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-reactlife" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/07/16/reactlife/">react生命周期总结</a>
+    </h1>
+  
+
+        
+        <a href="/2021/07/16/reactlife/" class="archive-article-date">
+  	<time datetime="2021-07-16T12:39:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一、React15-生命周期介绍"><a href="#一、React15-生命周期介绍" class="headerlink" title="一、React15 生命周期介绍"></a>一、React15 生命周期介绍</h3><ul>
+<li>React 15生命周期方法汇总</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">constructor</span>() // 构造函数</span><br><span class="line">componentWillReceiveProps() // 父组件状态属性更新触发</span><br><span class="line">shouldComponentUpdate() // 组件更新时调用，在此可拦截更新</span><br><span class="line">componentWillMount() // 初始化渲染时调用（挂载前调用）</span><br><span class="line">componentWillUpdate() // 组件更新时调用</span><br><span class="line">componentDidUpdate() // 组件更新后调用</span><br><span class="line">componentDidMount() // 初始化渲染时调用（挂载后调用）</span><br><span class="line">render() // 生成组件虚拟Dom</span><br><span class="line">componentWillUnmount() // 组件卸载时调用</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>React 15 各生命周期阶段介绍</li>
+</ul>
+        
+          <a class="article-more-a" href="/2021/07/16/reactlife/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">JavaScript React</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/07/16/reactlife/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-apis" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -853,83 +936,6 @@
 
 
   
-    <article id="post-array" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/30/array/">为什么大多数编程语言中，数组要从 0 开始编号，而不是从 1 开始呢</a>
-    </h1>
-  
-
-        
-        <a href="/2020/04/30/array/" class="archive-article-date">
-  	<time datetime="2020-04-30T08:37:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="为什么大多数编程语言中，数组要从-0-开始编号，而不是从-1-开始呢？"><a href="#为什么大多数编程语言中，数组要从-0-开始编号，而不是从-1-开始呢？" class="headerlink" title="为什么大多数编程语言中，数组要从 0 开始编号，而不是从 1 开始呢？"></a>为什么大多数编程语言中，数组要从 0 开始编号，而不是从 1 开始呢？</h3><p>从数组存储的内存模型上来看，“下标”最确切的定义应该是“偏移（offset）”。如果用 a 来表示数组的首地址，a[0] 就是偏移为 0 的位置，也就是首地址，a[k] 就表示偏移 k 个 type_size 的位置，所以计算 a[k] 的内存地址只需要用这个公式</p>
-<p>a[k]address=baseaddress+k∗typesizea[k]address=baseaddress+k∗typesize</p>
-        
-          <a class="article-more-a" href="/2020/04/30/array/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">其他</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/30/array/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1060,6 +1066,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">JavaScript Dom</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">JavaScript React</a>
               </li>
             
             <div class="clearfix"></div>
